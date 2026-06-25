@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #050505;
+    color: #6aaa90;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    -webkit-font-smoothing: none;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #050505; }
+  ::-webkit-scrollbar-thumb { background: #0f2a2a; }
+  ::-webkit-scrollbar-thumb:hover { background: #1a3a30; }
+
+  ::selection { background: #1a3a30; color: #5acada; }
+}
+
+@layer components {
+  .terminal-border { border: 1px solid #0f2a2a; }
+
+  .terminal-input {
+    background: transparent;
+    border: 1px solid #0f2a2a;
+    color: #6aaa90;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .terminal-input:focus {
+    border-color: #3abaca;
+    box-shadow: 0 0 0 1px #0a2a3060;
+  }
+  .terminal-input::placeholder { color: #1a3a30; }
+
+  .terminal-btn {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #3a7a6a;
+    background: transparent;
+    color: #6aaa90;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .terminal-btn:hover { background: #0a1f1f; border-color: #3abaca; color: #5acada; }
+  .terminal-btn:active { background: #0f2a2a; }
+
+  .terminal-btn-primary {
+    border-color: #3abaca;
+    color: #5acada;
+  }
+  .terminal-btn-primary:hover {
+    background: #0a2a30;
+    color: #7adadf;
+    border-color: #5acada;
+  }
+
+  .terminal-btn-danger {
+    border-color: #7a3030;
+    color: #ca5050;
+  }
+  .terminal-btn-danger:hover {
+    background: #2a1010;
+    color: #ea6060;
+    border-color: #ca5050;
+  }
+
+  /* Scanlines */
+  .scanlines { position: relative; }
+  .scanlines::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.025) 2px,
+      rgba(0,0,0,0.025) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .blink { animation: blink 1.2s step-end infinite; }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
